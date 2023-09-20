@@ -1,0 +1,23 @@
+<!-- your customizations -->
+<script>
+  window.onload = function() {
+    const ui = SwaggerUIBundle({
+      url: "{{ url_for('flasgger.' + config.SWAGGER['specs'][0].endpoint) }}",
+      dom_id: '#swagger-ui',
+      deepLinking: true,
+      presets: [
+        SwaggerUIBundle.presets.apis,
+        SwaggerUIStandalonePreset
+      ],
+      plugins: [
+        SwaggerUIBundle.plugins.DownloadUrl
+      ],
+      layout: "BaseLayout",
+      defaultModelsExpandDepth: -1  // This line hides the Models section
+    });
+    window.ui = ui;
+  }
+</script>
+<!-- /your customizations -->
+
+{% extends "flasgger/ui2/index.html" %}  <!-- Extend the default Flasgger template -->

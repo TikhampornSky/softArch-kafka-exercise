@@ -1,0 +1,11 @@
+## env dev 
+@apiUrl = http://localhost:8081
+
+POST {{ apiUrl }}/consume
+Content-Type: application/json
+
+{
+  "group_id": "mygroup",
+  "topic": "hello-kafka" 
+}
+###

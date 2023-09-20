@@ -1,0 +1,11 @@
+## env dev 
+@apiUrl = http://localhost:8081
+
+POST {{ apiUrl }}/produce
+Content-Type: application/json
+
+{
+  "topic": "hello-kafka",
+  "message": "Hello Kafka!"
+}
+###

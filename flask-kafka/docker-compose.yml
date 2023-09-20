@@ -1,0 +1,19 @@
+# docker-compose.yml
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+      args:
+        - HOST=kafka
+    ports:
+      - '8081:8081'
+    networks:
+      - web-network
+
+networks:
+  web-network:
+    external:
+      name: custom_network

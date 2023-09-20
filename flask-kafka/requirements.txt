@@ -1,0 +1,5 @@
+flask
+pyyaml
+flasgger
+marshmallow
+confluent-kafka

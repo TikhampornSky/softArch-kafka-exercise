@@ -1,0 +1,45 @@
+tags:
+  - Producer
+parameters:
+  - in: "body"
+    name: "body"
+    description: "Produce a message from a specific Kafka topic"
+    required: true
+    schema:
+      id: Producer
+      $ref: "#/definitions/ProducerRequest"
+definitions:
+  ProducerRequest:
+    type: "object"
+    properties:
+      topic:
+        type: "string"
+        example: "hello-kafka"
+      message:
+        type: "string"
+        example: "Hello World!"
+      config:
+        type: "object"
+        additionalProperties: {}
+        example: { "retries": 0 }
+  ProducerResponse:
+    type: "object"
+    properties:
+      body:
+        type: "object"
+        example: 'null'
+      statusResponse:
+        type: "object"
+        properties:
+          code:
+            type: "string"
+          desc:
+            type: "string"
+        example:
+          code: SUCCESS
+          desc: Service Success.
+responses:
+  200:
+    description: "Successful response"
+    schema:
+      $ref: "#/definitions/ProducerResponse"
