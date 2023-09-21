@@ -20,4 +20,4 @@ def __handler_error(err):
     return (MessageCode.ERROR_INVALID_PARAM.name, err.messages)
   elif isinstance(err, ServiceException):
     return (MessageCode.ERROR_KAFKA.name, err.msg)
-  return (MessageCode.UNKNOWN_ERROR.name, MessageCode.UNKNOWN_ERROR.value)
+  return (MessageCode.UNKNOWN_ERROR.name, err)

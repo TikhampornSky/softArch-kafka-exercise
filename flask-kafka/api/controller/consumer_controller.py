@@ -28,14 +28,29 @@ def consume():
   try:
     validated_data = ConsumerSchema().load(payload)
     consumer = Consumer(**validated_data)
-    a = ["Italian", "Japanese", "Chinese", "Thai", "Indian"]
-    b = ["Kitchen 1", "Kitchen 2", "Kitchen 3", "Kitchen 4"]
-    if consumer.topic not in a:
+    topic_names = ["Italian", "Japanese", "Chinese", "Thai", "Indian"]
+    group_id_names = ["Kitchen 1", "Kitchen 2", "Kitchen 3", "Kitchen 4"]
+    if consumer.topic not in topic_names:
       return exception_util.handler("Topic must be one of the following: Italian, Japanese, Chinese, Thai, Indian")
-    if consumer.group_id not in b:
+    if consumer.group_id not in group_id_names:
       return exception_util.handler("Group ID must be one of the following: Kitchen 1, Kitchen 2, Kitchen 3, Kitchen 4")
+    if not consumerRules(consumer.group_id, consumer.topic):
+      return exception_util.handler("Group ID and Topic do not match")
 
     msg = ConsumerService().consume(consumer)
     return service_util.build_server_response(MessageCode.SUCCESS, msg)
   except (ValidationError, ServiceException) as err:
     return exception_util.handler(err)
+  
+def consumerRules(group_id, topic):
+  rules = {
+    "Kitchen 1": ["Italian"],
+    "Kitchen 2": ["Japanese", "Chinese"],
+    "Kitchen 3": ["Japanese", "Thai", "Indian"],
+    "Kitchen 4": ["Italian", "Japanese", "Chinese", "Thai", "Indian"]
+  }
+
+  if topic in rules[group_id]:
+    return True
+  else:
+    return False
