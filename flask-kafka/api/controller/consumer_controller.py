@@ -28,6 +28,12 @@ def consume():
   try:
     validated_data = ConsumerSchema().load(payload)
     consumer = Consumer(**validated_data)
+    a = ["Italian", "Japanese", "Chinese", "Thai", "Indian"]
+    b = ["Kitchen 1", "Kitchen 2", "Kitchen 3", "Kitchen 4"]
+    if consumer.topic not in a:
+      return exception_util.handler("Topic must be one of the following: Italian, Japanese, Chinese, Thai, Indian")
+    if consumer.group_id not in b:
+      return exception_util.handler("Group ID must be one of the following: Kitchen 1, Kitchen 2, Kitchen 3, Kitchen 4")
 
     msg = ConsumerService().consume(consumer)
     return service_util.build_server_response(MessageCode.SUCCESS, msg)

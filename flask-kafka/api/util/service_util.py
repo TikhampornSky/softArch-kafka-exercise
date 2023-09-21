@@ -15,10 +15,14 @@ Purpose         : This Python file contains utilities that help the conversion o
 def build_status_response(respCode: str, respMsg: str):
   status_response = StatusResponse(respCode, respMsg)
   res = ServerReponse(status_response, None)
-  return json_util.to_json(res), 200,  {'Content-Type': 'application/json; charset=utf-8'}
+  if respCode == MessageCode.SUCCESS.name:
+    return json_util.to_json(res), 200, {'Content-Type': 'application/json; charset=utf-8'}
+  return json_util.to_json(res), 400,  {'Content-Type': 'application/json; charset=utf-8'}
 
 
 def build_server_response(msgCode: MessageCode, body: any):
   status_response = StatusResponse(msgCode.name, msgCode.value)
   res = ServerReponse(status_response, body)
-  return json_util.to_json(res), 200, {'Content-Type': 'application/json; charset=utf-8'}
+  if msgCode == MessageCode.SUCCESS:
+    return json_util.to_json(res), 200, {'Content-Type': 'application/json; charset=utf-8'}
+  return json_util.to_json(res), 400, {'Content-Type': 'application/json; charset=utf-8'}

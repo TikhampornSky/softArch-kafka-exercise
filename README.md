@@ -86,3 +86,7 @@ This API enables two services:
 ![](flask-kafka/resources/flasgger/01-swagger-ui.png)
 
 <div dir='rtl'>(: Have fun and happy coding</div># softArch-kafka-exercise
+
+# ----------------------------
+Krafka topic can be `Italian, Japanese, Chinese, Thai, Indian` <br>
+Kafka group_id can be `Kitchen 1, Kitchen 2, Kitchen 3, Kitchen 4` <br>

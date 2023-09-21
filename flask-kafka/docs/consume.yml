@@ -13,10 +13,12 @@ definitions:
     properties:
       group_id:
         type: "string"
-        example: "mygroup"
+        enum: ["Kitchen 1", "Kitchen 2", "Kitchen 3", "Kitchen 4"]
+        example: "Kitchen 1"
       topic:
         type: "string"
-        example: "hello-kafka"
+        enum: ["Italian", "Japanese", "Chinese", "Thai", "Indian"]
+        example: "Italian"
       config:
         type: "object"
         additionalProperties: {}

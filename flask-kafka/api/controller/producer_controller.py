@@ -28,6 +28,9 @@ def consume():
   try:
     validated_data = ProducerSchema().load(payload)
     producer = Producer(**validated_data)
+    a = ["Italian", "Japanese", "Chinese", "Thai", "Indian"]
+    if producer.topic not in a:
+      return exception_util.handler("Topic must be one of the following: Italian, Japanese, Chinese, Thai, Indian")
 
     ProducerService().produce(producer)
     return service_util.build_status_response(MessageCode.SUCCESS.name, MessageCode.SUCCESS.value)

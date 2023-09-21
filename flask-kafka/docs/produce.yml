@@ -14,7 +14,8 @@ definitions:
     properties:
       topic:
         type: "string"
-        example: "hello-kafka"
+        enum: ["Italian", "Japanese", "Chinese", "Thai", "Indian"]
+        example: "Italian"
       message:
         type: "string"
         example: "Hello World!"
@@ -43,3 +44,4 @@ responses:
     description: "Successful response"
     schema:
       $ref: "#/definitions/ProducerResponse"
+  
